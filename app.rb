@@ -88,7 +88,7 @@ client = Twilio::REST::Client.new "AC3157cd21b96c6f0acb6d118749e10991", "61fe77a
 
 get "/from" do
   #401
-  ENV["TWILIO_FROM"]
+  "+14126936852"
 end
 
 # Test sending an SMS
@@ -97,8 +97,8 @@ end
 get "/send_sms/" do 
 
   client.account.messages.create(
-    :from => ENV["TWILIO_FROM"],
-    :to => "+14126936852",
+    :from => "+14126936852",
+    :to => "+14128166195",
     :body => "Hey there. This is a test"
   )
   "Sent message"
