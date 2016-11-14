@@ -29,6 +29,7 @@ enable :sessions
 # ----------------------------------------------------------------------
 #     ROUTES, END POINTS AND ACTIONS
 # ----------------------------------------------------------------------
+=end
 
 get "/" do
   "My Basic Application".to_s
@@ -54,7 +55,7 @@ private
 def square_of int
   int * int
 end
-=end
+
 
 
 # Load environment variables using Dotenv. If a .env file exists, it will
@@ -80,7 +81,7 @@ enable :sessions
 # for each environment variable
 
 # CREATE A CLient
-client = Twilio::REST::Client.new ENV["AC3157cd21b96c6f0acb6d118749e10991"], ENV["61fe77acb422e0661439b16068ec5522"]
+client = Twilio::REST::Client.new "AC3157cd21b96c6f0acb6d118749e10991", "61fe77acb422e0661439b16068ec5522"
 
 
 # Use this method to check if your ENV file is set up
