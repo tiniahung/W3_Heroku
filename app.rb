@@ -32,7 +32,7 @@ enable :sessions
 =end
 
 get "/" do
-  "My Basic Application".to_s
+  "My Awesome Application".to_s
   #401
 end
 
@@ -86,10 +86,6 @@ client = Twilio::REST::Client.new "AC3157cd21b96c6f0acb6d118749e10991", "61fe77a
 
 # Use this method to check if your ENV file is set up
 
-get '/' do
-Hello
-end
-
 get "/from" do
   #401
   "+14126936852"
@@ -97,6 +93,7 @@ end
 
 # Test sending an SMS
 # change the to to your number 
+
 
 get '/send_sms/' do 
 
@@ -111,7 +108,7 @@ get '/send_sms/' do
 end
 
 # Hook this up to your Webhook for SMS/MMS through the console
-
+=begin
 get '/incoming_sms' do
 
   session["counter"] ||= 0
@@ -143,6 +140,7 @@ end
 error 401 do 
   "Not allowed!!!"
 end
+=end
 
 get '/incoming_sms' do
   
@@ -194,7 +192,7 @@ end
 
 
 
-private 
+#private 
 
 
 
