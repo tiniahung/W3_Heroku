@@ -155,6 +155,20 @@ get '/incoming_sms' do
 	
   elsif body == "what"
     message = "Try ask me work study fun or contact."
+  elsif body == "fun"
+    message = "Singing, dancing, playing guitar."
+  elsif body == "study"
+    message = "Integrated Innovation for Products & Services at Carnegie Mellon. Learning Ruby for online prototyping now"
+  elsif body == "contact"
+  client.account.messages.create(
+    :from => "+14126936852",
+    :to => "+14128166195",
+    :body => "Hey, you get a new friend! Text back at #{from_number}."
+  )
+
+  "Sent message".to_s
+  
+    message = "Try ask me work study fun or contact."
   #elsif body == "when"    
     #message = Time.now.strftime( "It's %A %B %e, %Y")
   #elsif body == "where"    
