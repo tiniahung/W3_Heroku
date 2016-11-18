@@ -65,8 +65,8 @@ client = Twilio::REST::Client.new "AC3157cd21b96c6f0acb6d118749e10991", "61fe77a
 
 get "/from" do
   #401
-  #ENV["TWILIO_NUMBER"]
-  "+14126936852"
+  ENV["TWILIO_NUMBER"]
+  #"+14126936852"
 end
 
 # Test sending an SMS
@@ -76,7 +76,7 @@ end
 get '/send_sms/' do 
 
   client.account.messages.create(
-    :from => "+14126936852",
+    :from => ENV["TWILIO_NUMBER"],
     :to => "+14128166195",
     :body => "How's it going? Testing."
   )
@@ -126,7 +126,7 @@ get '/incoming_sms' do
   elsif body == "play"
     session["last_context"] = "play"
     session["guess_it"] = rand(1...5)
-    message = "Guess what number Tina favorite number is. It's between 1 and 5"
+    message = "Guess what number Tina's favorite number is. It's between 1 and 5"
   elsif session["last_context"] == "play"
     
     # if it's not a number 
