@@ -142,11 +142,11 @@ get '/incoming_sms' do
   elsif body == "work"
     message = "Tina worked at : 1.Google Partner  2. Nielsen.  3.UBS  Type 1, 2, or 3 to learn more"
 	#session["last_context"] = "work" 
-	if session ["last_context"] == "work" && body.to_i == "1"
-	message = "Taipei from 2013 to 2015"
-	else
-	message = "Type again"
-	end
+	#if session ["last_context"] == "work" && body.to_i == "1"
+	#message = "Taipei from 2013 to 2015"
+	#else
+	#message = "Type again"
+	#end
   #elsif session ["last_context"] == "work" && body.to_i == "1"
 		#message = "Taipei from 2013 to 2015"
 	
@@ -161,7 +161,7 @@ get '/incoming_sms' do
     message = "Integrated Innovation for Products & Services at Carnegie Mellon. Learning Ruby for online prototyping now"
   elsif body == "contact"
   client.account.messages.create(
-    :from => "+14126936852",
+    :from => ENV["TWILIO_NUMBER"],
     :to => "+14128166195",
     :body => "Hey, you get a new friend! Text back at #{from_number}."
   )
@@ -196,7 +196,7 @@ end
 
 GREETINGS = ["What's up","Yo", "Hey","Howdy", "Nice meeting you", "‘Ello", "Aloha", "Hola", "Bonjour", "Ciao"]
 
-COMMANDS = "hi, work experience, what, study, hobby, play and contact."
+COMMANDS = "hi, work experience, what, study, fun, play and contact."
 
 def get_commands
   error_prompt = ["Wanna know more about Tina? ", "You can say: ", "Try asking: "].sample
