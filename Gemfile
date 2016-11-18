@@ -8,6 +8,7 @@ gem "rake"
 gem 'activerecord'
 gem 'sinatra-activerecord' # excellent gem that ports ActiveRecord for Sinatra
 gem 'faraday_middleware-parse_oj'
+gem 'gemoji'
 
 # to avoid installing postgres use 
 # bundle install --without production

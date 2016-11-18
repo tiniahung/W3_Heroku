@@ -6,30 +6,7 @@ require 'sinatra/activerecord'
 require 'rake'
 
 require 'twilio-ruby'
-=begin
-# ----------------------------------------------------------------------
 
-# Load environment variables using Dotenv. If a .env file exists, it will
-# set environment variables from that file (useful for dev environments)
-configure :development do
-  require 'dotenv'
-  Dotenv.load
-end
-
-
-# require any models 
-# you add to the folder
-# using the following syntax:
-# require_relative './models/<model_name>'
-
-
-# enable sessions for this project
-enable :sessions
-
-# ----------------------------------------------------------------------
-#     ROUTES, END POINTS AND ACTIONS
-# ----------------------------------------------------------------------
-=end
 
 get "/" do
   "My Awesome Application".to_s
@@ -100,7 +77,7 @@ get '/send_sms/' do
   client.account.messages.create(
     :from => "+14126936852",
     :to => "+14128166195",
-    :body => "Hey there. This is a test"
+    :body => "How's it going? Testing."
   )
 
   "Sent message".to_s
@@ -133,13 +110,6 @@ get '/incoming_sms' do
 
 end
 
-
-
-
-
-error 401 do 
-  "Not allowed!!!"
-end
 =end
 
 get '/incoming_sms' do
@@ -155,29 +125,35 @@ get '/incoming_sms' do
   elsif body == "play"
     session["last_context"] = "play"
     session["guess_it"] = rand(1...5)
-    message = "Guess what number I'm thinking of. It's between 1 and 5"
+    message = "Guess what number Tina favorite number is. It's between 1 and 5"
   elsif session["last_context"] == "play"
     
     # if it's not a number 
     if not body.to_i.to_s == body
-      message = "Cheater cheater that's not a number. Try again"
+      message = "Don't you know what number is? "n\" You got one more chance!"
     elsif body.to_i == session["guess_it"]
-      message = "Bingo! It was #{session["guess_it"]}"
+      message = "Bingo! It is #{session["guess_it"]}"
       session["last_context"] = "correct_answer"
       session["guess_it"] = -1
     else
       message = "Wrong! Try again"
     end
     
-  elsif body == "who"
-    message = "I was made by Tina."
+  elsif body == "work"
+    #session["last_context"] = "work"
+    message = "Tina worked at :"n\" 1.Google Partner "n\" 2. Nielsen. "n\" 3.UBS "n\" Type 1, 2, or 3 to learn more"
+	session["last_context"] = "work" 
+	elsif session ["last_context"] == "work" && body == "1"
+		message = Taipei from 2013 to 2015
+		
+	#WorkExperience[body.to_i, -1]
   elsif body == "what"
-    message = "I don't do much but I do it well. You can ask me who what when where or why."
-  elsif body == "when"    
+    message = "Try ask me work study fun or contact."
+  #elsif body == "when"    
     message = Time.now.strftime( "It's %A %B %e, %Y")
-  elsif body == "where"    
+  #elsif body == "where"    
     message = "I'm in Pittsburgh right now."
-  elsif body == "why"    
+  #elsif body == "why"    
     message = "For educational purposes."
   else 
     message = error_response
@@ -198,12 +174,12 @@ end
 
 
 
-GREETINGS = ["Hi","Yo", "Hey","Howdy", "Hello", "Ahoy", "‘Ello", "Aloha", "Hola", "Bonjour", "Hallo", "Ciao", "Konnichiwa"]
+GREETINGS = ["What's up","Yo", "Hey","Howdy", "Nice meeting you", "‘Ello", "Aloha", "Hola", "Bonjour", "Ciao"]
 
-COMMANDS = "hi, who, what, where, when, why and play."
+COMMANDS = "hi, work experience, what, study, hobby, play and contact."
 
 def get_commands
-  error_prompt = ["I know how to: ", "You can say: ", "Try asking: "].sample
+  error_prompt = ["I can tell you: ", "You can say: ", "Try asking: "].sample
   
   return error_prompt + COMMANDS
 end
@@ -213,7 +189,7 @@ def get_greeting
 end
 
 def get_about_message
-  get_greeting + ", I\'m SMSBot 🤖. " + get_commands
+  get_greeting + ", I\'m TinaBot 🤖. " +  get_commands
 end
 
 def get_help_message
