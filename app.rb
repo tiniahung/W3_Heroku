@@ -130,31 +130,32 @@ get '/incoming_sms' do
     
     # if it's not a number 
     if not body.to_i.to_s == body
-      message = "Don't you know what number is? "n\" You got one more chance!"
+      message = "Don't you know what number is? n\ You got one more chance!"
     elsif body.to_i == session["guess_it"]
       message = "Bingo! It is #{session["guess_it"]}"
       session["last_context"] = "correct_answer"
       session["guess_it"] = -1
     else
       message = "Wrong! Try again"
-    end
-    
+	end
+        
   elsif body == "work"
-    #session["last_context"] = "work"
-    message = "Tina worked at :"n\" 1.Google Partner "n\" 2. Nielsen. "n\" 3.UBS "n\" Type 1, 2, or 3 to learn more"
-	session["last_context"] = "work" 
-	elsif session ["last_context"] == "work" && body == "1"
-		message = Taipei from 2013 to 2015
-		
+    message = "Tina worked at :n\ 1.Google Partner n\ 2. Nielsen. n\ 3.UBS n\ Type 1, 2, or 3 to learn more"
+	#session["last_context"] = "work" 
+  #elsif session ["last_context"] == "work" && body.to_i == "1"
+		#message = "Taipei from 2013 to 2015"
+	
 	#WorkExperience[body.to_i, -1]
+	
+	
   elsif body == "what"
     message = "Try ask me work study fun or contact."
   #elsif body == "when"    
-    message = Time.now.strftime( "It's %A %B %e, %Y")
+    #message = Time.now.strftime( "It's %A %B %e, %Y")
   #elsif body == "where"    
-    message = "I'm in Pittsburgh right now."
+    #message = "I'm in Pittsburgh right now."
   #elsif body == "why"    
-    message = "For educational purposes."
+    #message = "For educational purposes."
   else 
     message = error_response
     session["last_context"] = "error"
