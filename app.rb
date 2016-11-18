@@ -142,7 +142,7 @@ get '/incoming_sms' do
   elsif body == "work"
     message = "Tina worked at :n\ 1.Google Partner n\ 2. Nielsen. n\ 3.UBS n\ Type 1, 2, or 3 to learn more"
 	#session["last_context"] = "work" 
-	if body.to_i == "1"
+	if session ["last_context"] == "work" && body.to_i == "1"
 	message = "Taipei from 2013 to 2015"
 	end
   #elsif session ["last_context"] == "work" && body.to_i == "1"
