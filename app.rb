@@ -140,10 +140,12 @@ get '/incoming_sms' do
 	end
         
   elsif body == "work"
-    message = "Tina worked at :n\ 1.Google Partner n\ 2. Nielsen. n\ 3.UBS n\ Type 1, 2, or 3 to learn more"
+    message = "Tina worked at : 1.Google Partner  2. Nielsen.  3.UBS  Type 1, 2, or 3 to learn more"
 	#session["last_context"] = "work" 
 	if session ["last_context"] == "work" && body.to_i == "1"
 	message = "Taipei from 2013 to 2015"
+	else
+	message = "Type again"
 	end
   #elsif session ["last_context"] == "work" && body.to_i == "1"
 		#message = "Taipei from 2013 to 2015"
@@ -183,7 +185,7 @@ GREETINGS = ["What's up","Yo", "Hey","Howdy", "Nice meeting you", "‘Ello", "Al
 COMMANDS = "hi, work experience, what, study, hobby, play and contact."
 
 def get_commands
-  error_prompt = ["I can tell you: ", "You can say: ", "Try asking: "].sample
+  error_prompt = ["Wanna know more about Tina? ", "You can say: ", "Try asking: "].sample
   
   return error_prompt + COMMANDS
 end
