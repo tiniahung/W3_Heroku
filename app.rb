@@ -160,15 +160,15 @@ get '/incoming_sms' do
   elsif body == "study"
     message = "Integrated Innovation for Products & Services at Carnegie Mellon. Learning Ruby for online prototyping now"
   elsif body == "contact"
-  client.account.messages.create(
+   client.account.messages.create(
     :from => ENV["TWILIO_NUMBER"],
     :to => "+14128166195",
-    :body => "Hey, you get a new friend! Text back at #{from_number}."
+   :body => "Hey, you get a new friend! Text back at #{from_number}."
   )
 
   "Sent message".to_s
   
-    message = "Try ask me work study fun or contact."
+    #message = "Try ask me work study fun or contact."
   #elsif body == "when"    
     #message = Time.now.strftime( "It's %A %B %e, %Y")
   #elsif body == "where"    
@@ -186,17 +186,12 @@ get '/incoming_sms' do
   twiml.text
 end
 
-
-
 #private 
 
 
+GREETINGS = ["What's up","Yo", "Hey","Howdy", "Nice meeting you", "Aloha", "Hola", "Bonjour", "Ciao"]
 
-
-
-GREETINGS = ["What's up","Yo", "Hey","Howdy", "Nice meeting you", "‘Ello", "Aloha", "Hola", "Bonjour", "Ciao"]
-
-COMMANDS = "hi, work experience, what, study, fun, play and contact."
+COMMANDS = "hi, work, what, study, fun, play and contact."
 
 def get_commands
   error_prompt = ["Wanna know more about Tina? ", "You can say: ", "Try asking: "].sample
